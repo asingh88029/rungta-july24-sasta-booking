@@ -4,9 +4,11 @@ const {CreateNewAdventureInDBService}  = require('./../service/Adventure.Service
 async function CreateNewAdventureController(request,response){
 try {
 
-    const { cityId,name,category,images, duration,pricePerHead} = request.body
+    const {cityid : cityId} = request.query;
 
-    const result = await CreateNewAdventureInDBService( cityId,name,category,images, duration,pricePerHead)
+    const { name, category, images, duration, pricePerHead } = request.body
+
+    const result = await CreateNewAdventureInDBService(cityId, name, category, images, duration, pricePerHead)
 
     if(!result.success){
         throw new Error("CreateNewAdventureInDBService failed to complete task")
