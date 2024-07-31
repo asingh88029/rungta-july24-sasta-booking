@@ -47,7 +47,52 @@ async function GetAllCityFromDBService(){
     }
 }
 
+async function UpdateACityInDBService(cityId, data){
+    try{
+
+        const {name, description, cuisines, image} = data
+
+        const cityDocument = await CityModel.findById(cityId)
+
+        if(name){
+            cityDocument.name = name
+        }
+        
+        if(description){
+            cityDocument.description = description
+        }
+
+        if(cuisines){
+            cityDocument.cuisines = cuisines
+        }
+
+        if(image){
+            cityDocument.image = image
+        }
+
+        const result = await cityDocument.save()
+
+        if(result){
+
+            return {
+                success : true,
+                data : result
+            }
+
+        }else{
+            throw new Error(`UpdateACityInDBService unable to update the city with id : ${cityId}`)
+        }
+
+    }catch(err){
+        console.log(err)
+        return {
+            success : false
+        }
+    }
+}
+
 module.exports = {
     CreateNewCityInDBService,
-    GetAllCityFromDBService
+    GetAllCityFromDBService,
+    UpdateACityInDBService
 }
