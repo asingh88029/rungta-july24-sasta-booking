@@ -1,4 +1,4 @@
-const {CreateNewCityInDBService} = require("./../service/City.Service")
+const {CreateNewCityInDBService, GetAllCityFromDBService} = require("./../service/City.Service")
 
 async function CreateNewCityConytoller(request, response){
     try{
@@ -25,6 +25,30 @@ async function CreateNewCityConytoller(request, response){
     }
 }
 
+async function GetAllCityController(request, response){
+    try{
+
+        const result = await GetAllCityFromDBService()
+
+        if(result.success){
+            response.status(200).json({
+                success : true,
+                data : result.data
+            })
+        }else{
+            throw new Error("GetAllCityFromDBService didn't give any city")
+        }
+
+    }catch(error){
+        console.log(error)
+        response.status(500).json({
+            success : false,
+            message : "Something went wrong" 
+        })
+    }
+}
+
 module.exports = {
-    CreateNewCityConytoller
+    CreateNewCityConytoller,
+    GetAllCityController
 }

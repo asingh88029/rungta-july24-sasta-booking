@@ -25,6 +25,29 @@ async function CreateNewCityInDBService(name, image, description, cuisines){
     }
 }
 
+async function GetAllCityFromDBService(){
+    try{
+
+        const result = await CityModel.find()
+
+        if(result){
+            return {
+                success : true,
+                data : result
+            }
+        }else{
+            throw new Error("GetAllCityFromDBService unable to get the city")
+        }
+
+    }catch(error){
+        console.log(error)
+        return {
+            success : false
+        }
+    }
+}
+
 module.exports = {
-    CreateNewCityInDBService
+    CreateNewCityInDBService,
+    GetAllCityFromDBService
 }
