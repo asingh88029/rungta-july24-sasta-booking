@@ -10,12 +10,16 @@ const AdventureDetailRouter = require("./src/router/AdventureDetail.Router")
 
 const AuthenticationRouter = require("./src/router/Authentication.Router")
 
+const {RequestPathAndMethodLoggerMiddleware} = require("./src/middlewares/Logger.middleware")
+
 const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
 
 const server = express()
 
 server.use(express.json())
+
+server.use(RequestPathAndMethodLoggerMiddleware)
 
 server.use("/auth", AuthenticationRouter)
 
