@@ -1,6 +1,6 @@
 const express = require("express");
 const { CreateNewCityConytoller, GetAllCityController , UpdateACityController} = require("./../controller/City.controller")
-const {AdminAuthorizationMiddleware} = require("./../middlewares/Authorization.middleware")
+const {AdminAuthorizationMiddleware, CustomerAuthorizationMiddleware} = require("./../middlewares/Authorization.middleware")
 
 const CityRouter = express.Router();
 
