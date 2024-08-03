@@ -10,6 +10,8 @@ const AdventureDetailRouter = require("./src/router/AdventureDetail.Router")
 
 const AuthenticationRouter = require("./src/router/Authentication.Router")
 
+const ReservationRouter = require("./src/router/Reservation.Router")
+
 const {RequestPathAndMethodLoggerMiddleware} = require("./src/middlewares/Logger.middleware")
 
 const PORT = process.env.PORT
@@ -28,6 +30,8 @@ server.use("/adventures", AdventureRouter);
 server.use("/adventures/detail", AdventureDetailRouter)
 
 server.use("/cities", CityRouter);
+
+server.use("/reservations", ReservationRouter)
 
 server.use("*", (request, response)=>{
     response.status(404).json({

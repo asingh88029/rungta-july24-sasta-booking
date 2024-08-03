@@ -39,10 +39,6 @@ const ReservationSchema = new mongoose.Schema({
                 type : String,
                 enum : ["cash", "upi", "credit_card", "debit_card", "internet_banking"],
                 required : true
-            },
-            amount : {
-                type : Number,
-                required : true
             }
         },
         required : true
